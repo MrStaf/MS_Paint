@@ -1,0 +1,2 @@
+VAR#>ant clean-all
+EXPRESSION#>ant
