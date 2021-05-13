@@ -65,7 +65,7 @@ public class DrawCanvas extends javax.swing.JPanel {
      * Creates new form DrawCanvas
      */
     public DrawCanvas() {
-        this.typeOfTools = "free";
+        this.typeOfTools = "rect";
         this.bordersize = 1;
         actDragger = false;
         this.List = new GraphShape();
@@ -175,16 +175,16 @@ public class DrawCanvas extends javax.swing.JPanel {
                 this.preview = false;
             }
             switch (typeOfTools) {
-                case "line":
+                case "Line":
                     this.List.createLine(StartDrawPoint.x, xEndRel, StartDrawPoint.y, yEndRel, bordersize, this.cb);
                     break;
-                case "rect":
+                case "Rectangle":
                     this.List.createRect(StartDrawPoint.x, xEndRel, StartDrawPoint.y, yEndRel, bordersize, this.cb, this.cbg);
                     break;
-                case "oval":
+                case "Oval":
                     this.List.createOval(StartDrawPoint.x, xEndRel, StartDrawPoint.y, yEndRel, bordersize, this.cb, this.cbg);
                     break;
-                case "free":
+                case "Brush":
                     Xi = Utils.addLast(Xi.length, Xi, xEndRel);
                     Yi = Utils.addLast(Yi.length, Yi, yEndRel);
                     if (Xi.length > 0) {
@@ -223,7 +223,7 @@ public class DrawCanvas extends javax.swing.JPanel {
         this.preview = true;
         Point p = MouseInfo.getPointerInfo().getLocation();
         SwingUtilities.convertPointFromScreen(p, this);
-        if (this.typeOfTools.equals("free")) {
+        if (this.typeOfTools.equals("Brush")) {
             Xi = Utils.addLast(0, Xi, p.x);
             Yi = Utils.addLast(0, Yi, p.y);
         }
@@ -236,16 +236,16 @@ public class DrawCanvas extends javax.swing.JPanel {
             int yEndRel = (int)(MouseInfo.getPointerInfo().getLocation().getY() - getLocationOnScreen().getY());
             this.List.deletePreview();
             switch(this.typeOfTools) {
-                case "line":
+                case "Line":
                     this.List.createLine(StartDrawPoint.x, xEndRel, StartDrawPoint.y, yEndRel, bordersize, cb);
                     break;
-                case "rect":
+                case "Rectangle":
                     this.List.createRect(StartDrawPoint.x, xEndRel, StartDrawPoint.y, yEndRel, bordersize, this.cb, this.cbg);
                     break;
-                case "oval":
+                case "Oval":
                     this.List.createOval(StartDrawPoint.x, xEndRel, StartDrawPoint.y, yEndRel, bordersize, this.cb, this.cbg);
                     break;
-                case "free":
+                case "Brush":
                     Xi = Utils.addLast(Xi.length, Xi, xEndRel);
                     Yi = Utils.addLast(Yi.length, Yi, yEndRel);
                     if (Xi.length > 0) {

@@ -25,6 +25,8 @@
 package Main;
 
 import java.awt.Color;
+import static java.util.Collections.list;
+import java.util.List;
 import javax.swing.JColorChooser;
 import javax.swing.JSlider;
 
@@ -77,6 +79,8 @@ public class MainFrame extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         LabelBorderSize = new javax.swing.JLabel();
         jToggleButton1 = new javax.swing.JToggleButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jList1 = new javax.swing.JList<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         drawCanvas1 = new Main.DrawCanvas();
         LeftMenu1 = new javax.swing.JPanel();
@@ -184,6 +188,18 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
+        jList1.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Rectangle", "Oval", "Line", "Brush" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jList1.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                jList1ValueChanged(evt);
+            }
+        });
+        jScrollPane2.setViewportView(jList1);
+
         javax.swing.GroupLayout LeftMenuLayout = new javax.swing.GroupLayout(LeftMenu);
         LeftMenu.setLayout(LeftMenuLayout);
         LeftMenuLayout.setHorizontalGroup(
@@ -191,6 +207,10 @@ public class MainFrame extends javax.swing.JFrame {
             .addGroup(LeftMenuLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(LeftMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, LeftMenuLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jToggleButton1)
+                        .addGap(30, 30, 30))
                     .addGroup(LeftMenuLayout.createSequentialGroup()
                         .addGroup(LeftMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(LeftMenuLayout.createSequentialGroup()
@@ -203,16 +223,18 @@ public class MainFrame extends javax.swing.JFrame {
                                 .addComponent(LabelBorderSize, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jSlider1, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel1))
-                        .addContainerGap(18, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, LeftMenuLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jToggleButton1)
-                        .addGap(30, 30, 30))))
+                        .addContainerGap(18, Short.MAX_VALUE))))
+            .addGroup(LeftMenuLayout.createSequentialGroup()
+                .addGap(38, 38, 38)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         LeftMenuLayout.setVerticalGroup(
             LeftMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(LeftMenuLayout.createSequentialGroup()
-                .addGap(222, 222, 222)
+                .addGap(74, 74, 74)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(32, 32, 32)
                 .addComponent(jToggleButton1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(LeftMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -443,6 +465,14 @@ public class MainFrame extends javax.swing.JFrame {
         this.drawCanvas1.undo();
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
+    private void jList1ValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jList1ValueChanged
+        if (!evt.getValueIsAdjusting()) 
+        {
+            List < String > selectedValuesList = jList1.getSelectedValuesList();
+            drawCanvas1.typeOfTools = selectedValuesList.get(0);
+        }
+    }//GEN-LAST:event_jList1ValueChanged
+
     
     /**
      * @param args the command line arguments
@@ -473,6 +503,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JList<String> jList1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
@@ -488,6 +519,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem2;
     private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSlider jSlider1;
     private javax.swing.JToggleButton jToggleButton1;
