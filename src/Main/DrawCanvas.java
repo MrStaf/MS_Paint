@@ -31,6 +31,9 @@ import java.awt.MouseInfo;
 import java.awt.Point;
 import java.awt.RenderingHints;
 import java.awt.geom.AffineTransform;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Iterator;
 import javax.swing.SwingUtilities;
 
 /**
@@ -45,7 +48,6 @@ public class DrawCanvas extends javax.swing.JPanel {
     private double zoomFactor = 1;
     private double prevZoomFactor = 1;
     private boolean zoomer;
-    private boolean actZoomer;
     private boolean dragger;
     public boolean actDragger;
     private boolean released;
@@ -55,7 +57,6 @@ public class DrawCanvas extends javax.swing.JPanel {
     private int yDiff;
     private Point startPoint;
     private Point StartDrawPoint;
-    private Point endPoint;
     private boolean preview;
     public String typeOfTools;
     private Integer Xi[];
@@ -65,13 +66,12 @@ public class DrawCanvas extends javax.swing.JPanel {
      * Creates new form DrawCanvas
      */
     public DrawCanvas() {
-        this.typeOfTools = "rect";
+        this.typeOfTools = "Line";
         this.bordersize = 1;
         actDragger = false;
         this.List = new GraphShape();
         this.startPoint = new Point(0,0);
         this.StartDrawPoint = new Point(0,0);
-        this.endPoint = new Point(0,0);
         initComponents();
     }
     
@@ -203,7 +203,6 @@ public class DrawCanvas extends javax.swing.JPanel {
 
     private void formMouseWheelMoved(java.awt.event.MouseWheelEvent evt) {//GEN-FIRST:event_formMouseWheelMoved
         zoomer = true;
-
         //Zoom in
         if (evt.getWheelRotation() < 0) {
             zoomFactor *= 1.1;
@@ -256,7 +255,6 @@ public class DrawCanvas extends javax.swing.JPanel {
                     break;
             }
         }
-        
         released = true;
         setCursor(new java.awt.Cursor(java.awt.Cursor.CROSSHAIR_CURSOR));
         repaint();
@@ -266,9 +264,27 @@ public class DrawCanvas extends javax.swing.JPanel {
         this.List.deleteLast();
         repaint();
     }
+    
     public void undo() {
         this.List.undo();
         repaint();
+    }
+    
+    public void saveCanvas() {
+        Iterator<Shape> itr = this.List.getAll().iterator();
+        try {
+            FileWriter myWriter = new FileWriter("filename.svg");
+            myWriter.write("<?xml version=\"1.0\" encoding=\"utf-8\"?>");
+            myWriter.write("<svg version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" x=\"0px\" y=\"0px\"\nviewBox=\"0 0 690 668\" height=\"690\" width=\"668\" style=\"enable-background:new 0 0 690 668;\" xml:space=\"preserve\">");
+            while(itr.hasNext()) {
+                itr.next().save(myWriter);
+            }
+            myWriter.write("</svg>");
+            myWriter.close();
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -25,7 +25,6 @@
 package Main;
 
 import java.awt.Color;
-import static java.util.Collections.list;
 import java.util.List;
 import javax.swing.JColorChooser;
 import javax.swing.JSlider;
@@ -53,12 +52,12 @@ public class MainFrame extends javax.swing.JFrame {
         initComponents();
         drawCanvas1.cb = cb;
         drawCanvas1.cbg = cbg;
-        drawCanvas1.List.createLine(10,50,90,150, 1, new Color(0,255,0));
+        //drawCanvas1.List.createLine(10,50,90,150, 1, new Color(0,255,0));
         drawCanvas1.List.createLine(100,400,70,200, 5, new Color(0,255,0));
         drawCanvas1.List.createLine(400,400,20,220, 10, new Color(0,0,0));
-        drawCanvas1.List.createRect(0,100,0,100,4, new Color(0,0,0), new Color(200,0,100));
-        drawCanvas1.List.createOval(100,500,100,500, 40, Color.green, Color.red);
-        drawCanvas1.List.createLine(300,400,20,220, 10, new Color(0,0,0));
+        //drawCanvas1.List.createRect(0,100,0,100,4, new Color(0,0,0), new Color(200,0,100));
+        //drawCanvas1.List.createOval(100,500,100,500, 40, Color.green, Color.red);
+        //drawCanvas1.List.createLine(300,400,20,220, 10, new Color(0,0,0));
     }
 
     /**
@@ -98,10 +97,6 @@ public class MainFrame extends javax.swing.JFrame {
         jMenu2 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
-        jMenu3 = new javax.swing.JMenu();
-        jRadioButtonMenuItem1 = new javax.swing.JRadioButtonMenuItem();
-        jRadioButtonMenuItem2 = new javax.swing.JRadioButtonMenuItem();
-        jRadioButtonMenuItem3 = new javax.swing.JRadioButtonMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("MS Paint");
@@ -189,10 +184,11 @@ public class MainFrame extends javax.swing.JFrame {
         });
 
         jList1.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Rectangle", "Oval", "Line", "Brush" };
+            String[] strings = { "Line", "Rectangle", "Oval", "Brush" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
+        jList1.setAutoscrolls(false);
         jList1.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
             public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
                 jList1ValueChanged(evt);
@@ -224,10 +220,7 @@ public class MainFrame extends javax.swing.JFrame {
                             .addComponent(jSlider1, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel1))
                         .addContainerGap(18, Short.MAX_VALUE))))
-            .addGroup(LeftMenuLayout.createSequentialGroup()
-                .addGap(38, 38, 38)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jScrollPane2)
         );
         LeftMenuLayout.setVerticalGroup(
             LeftMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -341,14 +334,22 @@ public class MainFrame extends javax.swing.JFrame {
 
         jMenu1.setText("File");
 
+        jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         jMenuItem1.setFont(new java.awt.Font("Open Sans", 0, 12)); // NOI18N
         jMenuItem1.setText("New File");
         jMenu1.add(jMenuItem1);
 
+        jMenuItem3.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         jMenuItem3.setFont(new java.awt.Font("Open Sans", 0, 12)); // NOI18N
         jMenuItem3.setText("Save");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem3);
 
+        jMenuItem4.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.SHIFT_DOWN_MASK | java.awt.event.InputEvent.CTRL_DOWN_MASK));
         jMenuItem4.setFont(new java.awt.Font("Open Sans", 0, 12)); // NOI18N
         jMenuItem4.setText("Save As");
         jMenu1.add(jMenuItem4);
@@ -377,26 +378,6 @@ public class MainFrame extends javax.swing.JFrame {
         jMenu2.add(jMenuItem5);
 
         Menu.add(jMenu2);
-
-        jMenu3.setText("Shapes");
-
-        jRadioButtonMenuItem1.setFont(new java.awt.Font("Open Sans", 0, 12)); // NOI18N
-        jRadioButtonMenuItem1.setSelected(true);
-        jRadioButtonMenuItem1.setText("Line");
-        jRadioButtonMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/line.png"))); // NOI18N
-        jMenu3.add(jRadioButtonMenuItem1);
-
-        jRadioButtonMenuItem2.setFont(new java.awt.Font("Open Sans", 0, 12)); // NOI18N
-        jRadioButtonMenuItem2.setText("Filled Rectangle");
-        jRadioButtonMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/rect.png"))); // NOI18N
-        jMenu3.add(jRadioButtonMenuItem2);
-
-        jRadioButtonMenuItem3.setFont(new java.awt.Font("Open Sans", 0, 12)); // NOI18N
-        jRadioButtonMenuItem3.setText("FIlled Oval");
-        jRadioButtonMenuItem3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/oval.png"))); // NOI18N
-        jMenu3.add(jRadioButtonMenuItem3);
-
-        Menu.add(jMenu3);
 
         setJMenuBar(Menu);
 
@@ -473,6 +454,10 @@ public class MainFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jList1ValueChanged
 
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        drawCanvas1.saveCanvas();
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
+
     
     /**
      * @param args the command line arguments
@@ -506,7 +491,6 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JList<String> jList1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
@@ -515,9 +499,6 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem1;
-    private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem2;
-    private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;

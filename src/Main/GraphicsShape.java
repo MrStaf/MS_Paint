@@ -27,6 +27,12 @@ import java.awt.Graphics;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.awt.Color;
+import java.io.FileWriter; 
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+
 
 /**
  *
@@ -36,6 +42,7 @@ import java.awt.Color;
 public interface GraphicsShape {
     public abstract void drawIt(Graphics g);
     public abstract void drawExt(Graphics g);
+    public void save(FileWriter myWriter);
 }
 
 class Shape implements GraphicsShape{
@@ -57,6 +64,9 @@ class Shape implements GraphicsShape{
        
     }
     public void drawExt(Graphics g) {
+        
+    }
+    public void save(FileWriter myWriter) {
         
     }
    
@@ -96,6 +106,15 @@ class Line extends Shape {
         // border size
         g.setColor(Color.black );
         g.drawRect(x1min, y1min, (x2max-x1min), (y2max - y1min));
+    }
+    @Override
+    public void save(FileWriter myWriter) {
+        try {
+            String output = String.format("<line x1=\"%d\" y1=\"%d\" x2=\"%d\" y2=\"%d\" style=\"fill:none;stroke:%s;stroke-width:%dpx; \"/>",this.x1, this.y1, this.x2, this.y2, Utils.getHexFromColor(this.c1), this.bordersize);
+            myWriter.write(output);
+        } catch (IOException ex) {
+            Logger.getLogger(Line.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }
 
@@ -137,6 +156,15 @@ class Rect extends Shape {
             g.fillRect(x1+halfPositiveBorderSize, y1+halfPositiveBorderSize, (x2 - x1)-this.bordersize, (y2 - y1)-this.bordersize);
         }
     }
+   @Override
+   public void save(FileWriter myWriter) {
+       try {
+            String output = String.format("<rect x=\"%d\" y=\"%d\" width=\"%d\" height=\"%d\" style=\"fill:%s;stroke:%s;stroke-width:%dpx; \"/>",this.x1, this.y1, (this.x2 - this.x1), (this.y2 - this.y1), Utils.getHexFromColor(this.c2), Utils.getHexFromColor(this.c1), this.bordersize);
+            myWriter.write(output);
+        } catch (IOException ex) {
+            Logger.getLogger(Line.class.getName()).log(Level.SEVERE, null, ex);
+        }
+   }
 }
 
 class Oval extends Shape {
@@ -171,6 +199,15 @@ class Oval extends Shape {
             g.fillOval(x1+this.bordersize, y1+this.bordersize, (x2 - x1)-2*this.bordersize, (y2 - y1)-2*this.bordersize);
         }
     }
+    @Override
+    public void save(FileWriter myWriter) {
+        try {
+            String output = String.format("<ellipse cx=\"%d\" cy=\"%d\" rx=\"%d\" ry=\"%d\" style=\"fill:%s;stroke:%s;stroke-width:%dpx; \"/>",this.x1 + (this.x2 - this.x1) / 2, this.y1 + (this.y2 - this.y1) / 2, (this.x2 - this.x1) / 2 , (this.y2 - this.y1) / 2, Utils.getHexFromColor(this.c2), Utils.getHexFromColor(this.c1), this.bordersize);
+            myWriter.write(output);
+        } catch (IOException ex) {
+            Logger.getLogger(Line.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }
 
 class DrawFree extends Shape {
@@ -186,6 +223,20 @@ class DrawFree extends Shape {
         if (this.visible) {
             for (int i = 0; i < Xi.length; i++) {
                 g.fillOval(Xi[i]-this.bordersize/2, Yi[i]-this.bordersize/2, this.bordersize, this.bordersize);
+                if (i < Xi.length - 1 && Math.sqrt(Xi[i]*Xi[i+1] + Yi[i]*Yi[i+1]) > 2) {
+                     // corr
+                    int Points[] = Utils.getLineBorder(Xi[i], Xi[i+1], Yi[i], Yi[i+1], bordersize);
+
+                    // border size
+                    g.setColor(this.c1);
+                    if (this.bordersize == 1) {
+                        g.drawLine(Xi[i], Yi[i], Xi[i+1], Yi[i+1]);
+                    } else {
+                        int []xPoints = {Points[0], Points[1], Points[2], Points[3]};
+                        int []yPoints = {Points[4], Points[5], Points[6], Points[7]};
+                        g.fillPolygon(xPoints, yPoints, 4);
+                    }
+                }
             }
         }
     }
@@ -193,6 +244,24 @@ class DrawFree extends Shape {
         this.Xi = Utils.addLast(this.Xi.length, this.Xi, x);
         this.Yi = Utils.addLast(this.Yi.length, this.Yi, y);
     }
+    @Override
+    public void save(FileWriter myWriter) {
+        try {
+            String Ovals = "";
+            String path = "<path d=\"M";
+            for (int i = 0; i < Xi.length; i++) {
+                path += Xi[i] + "," + Yi[i] + " ";
+                Ovals += String.format("<circle cx=\"%d\" cy=\"%d\" r=\"%d\" fill=\"%s\"/>", Xi[i], Yi[i], this.bordersize/2, Utils.getHexFromColor(this.c1));
+            }
+            
+            path += String.format("\" style=\"fill:none;stroke:%s;stroke-width:%dpx; \"/>", Utils.getHexFromColor(this.c1), this.bordersize);
+            myWriter.write(Ovals);
+            myWriter.write(path);
+        } catch (IOException ex) {
+            Logger.getLogger(Line.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
 }
 
 class GraphShape {
@@ -269,7 +338,7 @@ class Utils {
     public static int[] getLineBorder(int x1, int x2, int y1, int y2, int bordersize) {
         Integer nx = (y1-y2);
         Integer ny = (x2-x1);
-        double distance = Math.sqrt(nx*nx+ny*ny);
+        double distance = Math.sqrt(nx*nx+ny*ny)*2;
         nx = (int)((nx / distance)*bordersize);
         ny = (int)((ny / distance)*bordersize);
         int x11 = x1+nx*(-1);
@@ -297,6 +366,9 @@ class Utils {
         }
         return min;
     }   
+    public static String getHexFromColor(Color c) {
+        return String.format("#%06x", c.getRGB() & 0xFFFFFF);
+    } 
     /**
      *
      * @param n length of the array
