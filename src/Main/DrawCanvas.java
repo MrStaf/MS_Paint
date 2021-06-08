@@ -24,6 +24,19 @@
 
 package Main;
 
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -33,14 +46,17 @@ import java.awt.RenderingHints;
 import java.awt.geom.AffineTransform;
 import java.io.FileWriter;
 import java.io.IOException;
+import static java.util.Collections.list;
 import java.util.Iterator;
 import javax.swing.SwingUtilities;
+import javax.xml.XMLConstants;
 
 /**
  *
  * @author Mr_Staf
  */
 public class DrawCanvas extends javax.swing.JPanel {
+    public String path;
     public GraphShape List;
     public Color cbg;
     public Color cb;
@@ -66,6 +82,7 @@ public class DrawCanvas extends javax.swing.JPanel {
      * Creates new form DrawCanvas
      */
     public DrawCanvas() {
+        this.path = "";
         this.typeOfTools = "Line";
         this.bordersize = 1;
         actDragger = false;
@@ -265,6 +282,11 @@ public class DrawCanvas extends javax.swing.JPanel {
         repaint();
     }
     
+    public void deleteAll() {
+        this.List.deleteAll();
+        repaint();
+    }
+    
     public void undo() {
         this.List.undo();
         repaint();
@@ -273,20 +295,44 @@ public class DrawCanvas extends javax.swing.JPanel {
     public void saveCanvas() {
         Iterator<Shape> itr = this.List.getAll().iterator();
         try {
-            FileWriter myWriter = new FileWriter("filename.svg");
+            if (!this.path.endsWith(".svg")) {
+                this.path = this.path + ".svg";
+            }
+            FileWriter myWriter = new FileWriter(this.path);
             myWriter.write("<?xml version=\"1.0\" encoding=\"utf-8\"?>");
-            myWriter.write("<svg version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" x=\"0px\" y=\"0px\"\nviewBox=\"0 0 690 668\" height=\"690\" width=\"668\" style=\"enable-background:new 0 0 690 668;\" xml:space=\"preserve\">");
+            myWriter.write("\n<svg version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" x=\"0px\" y=\"0px\" viewBox=\"0 0 690 668\" height=\"690\" width=\"668\" style=\"enable-background:new 0 0 690 668;\" xml:space=\"preserve\">");
             while(itr.hasNext()) {
                 itr.next().save(myWriter);
             }
-            myWriter.write("</svg>");
+            myWriter.write("\n</svg>");
             myWriter.close();
         } catch (IOException e) {
             System.out.println("An error occurred.");
             e.printStackTrace();
         }
     }
-
+    
+    /**public void openCanvas() {
+         DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+         try {
+            dbf.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING, true);
+            DocumentBuilder db = dbf.newDocumentBuilder();
+            Document doc = db.parse(new File(this.path));
+            doc.getDocumentElement().normalize();
+            NodeList list = doc.getElementsByTagName("svg");
+            Node node = list.item(0);
+            if (node.getNodeType() == Node.ELEMENT_NODE) {
+                Element element = (Element) node;
+                int height = Integer.valueOf(element.getAttribute("height"));
+                int width = Integer.valueOf(element.getAttribute("width"));
+                setSize(height, width);
+                System.out.printf("%d %d", height, width);
+                NodeList list2 = element.getElementsByTagName("");
+            }
+         } catch (ParserConfigurationException | SAXException | IOException e) {
+            e.printStackTrace();
+         }
+    }*/
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
 }

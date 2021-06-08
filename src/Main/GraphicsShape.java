@@ -110,7 +110,7 @@ class Line extends Shape {
     @Override
     public void save(FileWriter myWriter) {
         try {
-            String output = String.format("<line x1=\"%d\" y1=\"%d\" x2=\"%d\" y2=\"%d\" style=\"fill:none;stroke:%s;stroke-width:%dpx; \"/>",this.x1, this.y1, this.x2, this.y2, Utils.getHexFromColor(this.c1), this.bordersize);
+            String output = String.format("\n<line x1=\"%d\" y1=\"%d\" x2=\"%d\" y2=\"%d\" style=\"fill:none;stroke:%s;stroke-width:%dpx; \"/>",this.x1, this.y1, this.x2, this.y2, Utils.getHexFromColor(this.c1), this.bordersize);
             myWriter.write(output);
         } catch (IOException ex) {
             Logger.getLogger(Line.class.getName()).log(Level.SEVERE, null, ex);
@@ -159,7 +159,7 @@ class Rect extends Shape {
    @Override
    public void save(FileWriter myWriter) {
        try {
-            String output = String.format("<rect x=\"%d\" y=\"%d\" width=\"%d\" height=\"%d\" style=\"fill:%s;stroke:%s;stroke-width:%dpx; \"/>",this.x1, this.y1, (this.x2 - this.x1), (this.y2 - this.y1), Utils.getHexFromColor(this.c2), Utils.getHexFromColor(this.c1), this.bordersize);
+            String output = String.format("\n<rect x=\"%d\" y=\"%d\" width=\"%d\" height=\"%d\" style=\"fill:%s;stroke:%s;stroke-width:%dpx; \"/>",this.x1, this.y1, (this.x2 - this.x1), (this.y2 - this.y1), Utils.getHexFromColor(this.c2), Utils.getHexFromColor(this.c1), this.bordersize);
             myWriter.write(output);
         } catch (IOException ex) {
             Logger.getLogger(Line.class.getName()).log(Level.SEVERE, null, ex);
@@ -202,7 +202,7 @@ class Oval extends Shape {
     @Override
     public void save(FileWriter myWriter) {
         try {
-            String output = String.format("<ellipse cx=\"%d\" cy=\"%d\" rx=\"%d\" ry=\"%d\" style=\"fill:%s;stroke:%s;stroke-width:%dpx; \"/>",this.x1 + (this.x2 - this.x1) / 2, this.y1 + (this.y2 - this.y1) / 2, (this.x2 - this.x1) / 2 , (this.y2 - this.y1) / 2, Utils.getHexFromColor(this.c2), Utils.getHexFromColor(this.c1), this.bordersize);
+            String output = String.format("\n<ellipse cx=\"%d\" cy=\"%d\" rx=\"%d\" ry=\"%d\" style=\"fill:%s;stroke:%s;stroke-width:%dpx; \"/>",this.x1 + (this.x2 - this.x1) / 2, this.y1 + (this.y2 - this.y1) / 2, (this.x2 - this.x1) / 2 , (this.y2 - this.y1) / 2, Utils.getHexFromColor(this.c2), Utils.getHexFromColor(this.c1), this.bordersize);
             myWriter.write(output);
         } catch (IOException ex) {
             Logger.getLogger(Line.class.getName()).log(Level.SEVERE, null, ex);
@@ -248,10 +248,10 @@ class DrawFree extends Shape {
     public void save(FileWriter myWriter) {
         try {
             String Ovals = "";
-            String path = "<path d=\"M";
+            String path = "\n<path d=\"M";
             for (int i = 0; i < Xi.length; i++) {
                 path += Xi[i] + "," + Yi[i] + " ";
-                Ovals += String.format("<circle cx=\"%d\" cy=\"%d\" r=\"%d\" fill=\"%s\"/>", Xi[i], Yi[i], this.bordersize/2, Utils.getHexFromColor(this.c1));
+                Ovals += String.format("\n<circle cx=\"%d\" cy=\"%d\" r=\"%d\" fill=\"%s\"/>", Xi[i], Yi[i], this.bordersize/2, Utils.getHexFromColor(this.c1));
             }
             
             path += String.format("\" style=\"fill:none;stroke:%s;stroke-width:%dpx; \"/>", Utils.getHexFromColor(this.c1), this.bordersize);
@@ -294,6 +294,10 @@ class GraphShape {
         if (this.Deleted.size() == this.maxDeleted) {
             this.Deleted.pop();
         }
+    }
+    public void deleteAll() {
+        this.Current.clear();
+        this.Deleted.clear();
     }
     public void deletePreview() {
         if (this.Current.size() > 0) {

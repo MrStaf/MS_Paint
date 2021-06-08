@@ -1,0 +1,11 @@
+@startuml
+class Main.DrawCanvas
+class Main.MainFrame
+class java.util.Collections
+class javax.swing.JFrame
+class javax.swing.JPanel
+interface Main.GraphicsShape
+Main.DrawCanvas ..> java.util.Collections
+Main.DrawCanvas --|> javax.swing.JPanel
+Main.MainFrame --|> javax.swing.JFrame
+@enduml

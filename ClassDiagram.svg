@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="235px" preserveAspectRatio="none" style="width:465px;height:235px;" version="1.1" viewBox="0 0 465 235" width="465px" zoomAndPan="magnify">
+    <defs>
+        <filter height="300%" id="f1140e0kcvkvaa" width="300%" x="-1" y="-1">
+            <feGaussianBlur result="blurOut" stdDeviation="2.0"/>
+            <feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/>
+            <feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/>
+            <feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/>
+        </filter>
+    </defs>
+    <g>
+        <!--MD5=[e80bd461753d6c5ec111731420959425]
+cluster Main-->
+        <polygon fill="#FFFFFF" filter="url(#f1140e0kcvkvaa)" points="16,6,58,6,65,28.2969,448,28.2969,448,105,16,105,16,6" style="stroke:#000000;stroke-width:1.5;"/>
+        <line style="stroke:#000000;stroke-width:1.5;" x1="16" x2="65" y1="28.2969" y2="28.2969"/>
+        <text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="36" x="20" y="20.9951">Main</text>
+        <!--MD5=[7db3c59d38ae5b37b484eb2df9368145]
+cluster java.util-->
+        <polygon fill="#FFFFFF" filter="url(#f1140e0kcvkvaa)" points="68,129,134,129,141,151.2969,200,151.2969,200,228,68,228,68,129" style="stroke:#000000;stroke-width:1.5;"/>
+        <line style="stroke:#000000;stroke-width:1.5;" x1="68" x2="141" y1="151.2969" y2="151.2969"/>
+        <text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="60" x="72" y="143.9951">java.util</text>
+        <!--MD5=[535aab4de90d4dfa371a9b40d5438fc3]
+cluster javax.swing-->
+        <polygon fill="#FFFFFF" filter="url(#f1140e0kcvkvaa)" points="224,129,322,129,329,151.2969,435,151.2969,435,228,224,228,224,129" style="stroke:#000000;stroke-width:1.5;"/>
+        <line style="stroke:#000000;stroke-width:1.5;" x1="224" x2="329" y1="151.2969" y2="151.2969"/>
+        <text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="92" x="228" y="143.9951">javax.swing</text>
+        <!--MD5=[f84446f3d390f718a55f615c770f1afe]
+class Main.DrawCanvas-->
+        <rect codeLine="1" fill="#FEFECE" filter="url(#f1140e0kcvkvaa)" height="48" id="Main.DrawCanvas" style="stroke:#A80036;stroke-width:1.5;" width="108" x="189" y="41"/>
+        <ellipse cx="204" cy="57" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;"/>
+        <path d="M206.9688,62.6406 Q206.3906,62.9375 205.75,63.0781 Q205.1094,63.2344 204.4063,63.2344 Q201.9063,63.2344 200.5781,61.5938 Q199.2656,59.9375 199.2656,56.8125 Q199.2656,53.6875 200.5781,52.0313 Q201.9063,50.375 204.4063,50.375 Q205.1094,50.375 205.75,50.5313 Q206.4063,50.6875 206.9688,50.9844 L206.9688,53.7031 Q206.3438,53.125 205.75,52.8594 Q205.1563,52.5781 204.5313,52.5781 Q203.1875,52.5781 202.5,53.6563 Q201.8125,54.7188 201.8125,56.8125 Q201.8125,58.9063 202.5,59.9844 Q203.1875,61.0469 204.5313,61.0469 Q205.1563,61.0469 205.75,60.7813 Q206.3438,60.5 206.9688,59.9219 L206.9688,62.6406 Z " fill="#000000"/>
+        <text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="76" x="218" y="61.1543">DrawCanvas</text>
+        <line style="stroke:#A80036;stroke-width:1.5;" x1="190" x2="296" y1="73" y2="73"/>
+        <line style="stroke:#A80036;stroke-width:1.5;" x1="190" x2="296" y1="81" y2="81"/>
+        <!--MD5=[ff2044c7ffb74f414b0410b91b2eb085]
+class Main.MainFrame-->
+        <rect codeLine="2" fill="#FEFECE" filter="url(#f1140e0kcvkvaa)" height="48" id="Main.MainFrame" style="stroke:#A80036;stroke-width:1.5;" width="100" x="332" y="41"/>
+        <ellipse cx="347" cy="57" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;"/>
+        <path d="M349.9688,62.6406 Q349.3906,62.9375 348.75,63.0781 Q348.1094,63.2344 347.4063,63.2344 Q344.9063,63.2344 343.5781,61.5938 Q342.2656,59.9375 342.2656,56.8125 Q342.2656,53.6875 343.5781,52.0313 Q344.9063,50.375 347.4063,50.375 Q348.1094,50.375 348.75,50.5313 Q349.4063,50.6875 349.9688,50.9844 L349.9688,53.7031 Q349.3438,53.125 348.75,52.8594 Q348.1563,52.5781 347.5313,52.5781 Q346.1875,52.5781 345.5,53.6563 Q344.8125,54.7188 344.8125,56.8125 Q344.8125,58.9063 345.5,59.9844 Q346.1875,61.0469 347.5313,61.0469 Q348.1563,61.0469 348.75,60.7813 Q349.3438,60.5 349.9688,59.9219 L349.9688,62.6406 Z " fill="#000000"/>
+        <text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="68" x="361" y="61.1543">MainFrame</text>
+        <line style="stroke:#A80036;stroke-width:1.5;" x1="333" x2="431" y1="73" y2="73"/>
+        <line style="stroke:#A80036;stroke-width:1.5;" x1="333" x2="431" y1="81" y2="81"/>
+        <!--MD5=[a68af0d7fd13b36e6a05d1a9023a88a7]
+class Main.GraphicsShape-->
+        <rect codeLine="6" fill="#FEFECE" filter="url(#f1140e0kcvkvaa)" height="48" id="Main.GraphicsShape" style="stroke:#A80036;stroke-width:1.5;" width="121" x="32.5" y="41"/>
+        <ellipse cx="47.5" cy="57" fill="#B4A7E5" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;"/>
+        <path d="M43.4219,52.7656 L43.4219,50.6094 L50.8125,50.6094 L50.8125,52.7656 L48.3438,52.7656 L48.3438,60.8438 L50.8125,60.8438 L50.8125,63 L43.4219,63 L43.4219,60.8438 L45.8906,60.8438 L45.8906,52.7656 L43.4219,52.7656 Z " fill="#000000"/>
+        <text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacing" textLength="89" x="61.5" y="61.1543">GraphicsShape</text>
+        <line style="stroke:#A80036;stroke-width:1.5;" x1="33.5" x2="152.5" y1="73" y2="73"/>
+        <line style="stroke:#A80036;stroke-width:1.5;" x1="33.5" x2="152.5" y1="81" y2="81"/>
+        <!--MD5=[116b2f85a4dcee79c9e0e32d4a378dd6]
+class java.util.Collections-->
+        <rect codeLine="3" fill="#FEFECE" filter="url(#f1140e0kcvkvaa)" height="48" id="java.util.Collections" style="stroke:#A80036;stroke-width:1.5;" width="100" x="84" y="164"/>
+        <ellipse cx="99" cy="180" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;"/>
+        <path d="M101.9688,185.6406 Q101.3906,185.9375 100.75,186.0781 Q100.1094,186.2344 99.4063,186.2344 Q96.9063,186.2344 95.5781,184.5938 Q94.2656,182.9375 94.2656,179.8125 Q94.2656,176.6875 95.5781,175.0313 Q96.9063,173.375 99.4063,173.375 Q100.1094,173.375 100.75,173.5313 Q101.4063,173.6875 101.9688,173.9844 L101.9688,176.7031 Q101.3438,176.125 100.75,175.8594 Q100.1563,175.5781 99.5313,175.5781 Q98.1875,175.5781 97.5,176.6563 Q96.8125,177.7188 96.8125,179.8125 Q96.8125,181.9063 97.5,182.9844 Q98.1875,184.0469 99.5313,184.0469 Q100.1563,184.0469 100.75,183.7813 Q101.3438,183.5 101.9688,182.9219 L101.9688,185.6406 Z " fill="#000000"/>
+        <text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="68" x="113" y="184.1543">Collections</text>
+        <line style="stroke:#A80036;stroke-width:1.5;" x1="85" x2="183" y1="196" y2="196"/>
+        <line style="stroke:#A80036;stroke-width:1.5;" x1="85" x2="183" y1="204" y2="204"/>
+        <!--MD5=[18a7562403221f513ca44e0f82c4c17a]
+class javax.swing.JFrame-->
+        <rect codeLine="4" fill="#FEFECE" filter="url(#f1140e0kcvkvaa)" height="48" id="javax.swing.JFrame" style="stroke:#A80036;stroke-width:1.5;" width="74" x="345" y="164"/>
+        <ellipse cx="360" cy="180" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;"/>
+        <path d="M362.9688,185.6406 Q362.3906,185.9375 361.75,186.0781 Q361.1094,186.2344 360.4063,186.2344 Q357.9063,186.2344 356.5781,184.5938 Q355.2656,182.9375 355.2656,179.8125 Q355.2656,176.6875 356.5781,175.0313 Q357.9063,173.375 360.4063,173.375 Q361.1094,173.375 361.75,173.5313 Q362.4063,173.6875 362.9688,173.9844 L362.9688,176.7031 Q362.3438,176.125 361.75,175.8594 Q361.1563,175.5781 360.5313,175.5781 Q359.1875,175.5781 358.5,176.6563 Q357.8125,177.7188 357.8125,179.8125 Q357.8125,181.9063 358.5,182.9844 Q359.1875,184.0469 360.5313,184.0469 Q361.1563,184.0469 361.75,183.7813 Q362.3438,183.5 362.9688,182.9219 L362.9688,185.6406 Z " fill="#000000"/>
+        <text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="42" x="374" y="184.1543">JFrame</text>
+        <line style="stroke:#A80036;stroke-width:1.5;" x1="346" x2="418" y1="196" y2="196"/>
+        <line style="stroke:#A80036;stroke-width:1.5;" x1="346" x2="418" y1="204" y2="204"/>
+        <!--MD5=[56a185cb33bdc7c23303e5865f20a19b]
+class javax.swing.JPanel-->
+        <rect codeLine="5" fill="#FEFECE" filter="url(#f1140e0kcvkvaa)" height="48" id="javax.swing.JPanel" style="stroke:#A80036;stroke-width:1.5;" width="70" x="240" y="164"/>
+        <ellipse cx="255" cy="180" fill="#ADD1B2" rx="11" ry="11" style="stroke:#A80036;stroke-width:1.0;"/>
+        <path d="M257.9688,185.6406 Q257.3906,185.9375 256.75,186.0781 Q256.1094,186.2344 255.4063,186.2344 Q252.9063,186.2344 251.5781,184.5938 Q250.2656,182.9375 250.2656,179.8125 Q250.2656,176.6875 251.5781,175.0313 Q252.9063,173.375 255.4063,173.375 Q256.1094,173.375 256.75,173.5313 Q257.4063,173.6875 257.9688,173.9844 L257.9688,176.7031 Q257.3438,176.125 256.75,175.8594 Q256.1563,175.5781 255.5313,175.5781 Q254.1875,175.5781 253.5,176.6563 Q252.8125,177.7188 252.8125,179.8125 Q252.8125,181.9063 253.5,182.9844 Q254.1875,184.0469 255.5313,184.0469 Q256.1563,184.0469 256.75,183.7813 Q257.3438,183.5 257.9688,182.9219 L257.9688,185.6406 Z " fill="#000000"/>
+        <text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="38" x="269" y="184.1543">JPanel</text>
+        <line style="stroke:#A80036;stroke-width:1.5;" x1="241" x2="309" y1="196" y2="196"/>
+        <line style="stroke:#A80036;stroke-width:1.5;" x1="241" x2="309" y1="204" y2="204"/>
+        <!--MD5=[de2dd22f636ba6beff0ba985616ee208]
+link Main.DrawCanvas to java.util.Collections-->
+        <path codeLine="7" d="M222.24,89.04 C204.1,109.18 177.73,138.45 158.55,159.75 " fill="none" id="Main.DrawCanvas-to-java.util.Collections" style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/>
+        <polygon fill="#A80036" points="155.05,163.63,164.0524,159.6353,158.4027,159.9206,158.1174,154.271,155.05,163.63" style="stroke:#A80036;stroke-width:1.0;"/>
+        <!--MD5=[c8e63eb6f3e0c2c7fcaa143aba00429c]
+link Main.DrawCanvas to javax.swing.JPanel-->
+        <path codeLine="8" d="M249.09,89.04 C253.2,104.59 258.75,125.57 263.66,144.13 " fill="none" id="Main.DrawCanvas-to-javax.swing.JPanel" style="stroke:#A80036;stroke-width:1.0;"/>
+        <polygon fill="none" points="270.47,142.5,268.82,163.63,256.94,146.08,270.47,142.5" style="stroke:#A80036;stroke-width:1.0;"/>
+        <!--MD5=[62018f9747f156d62c436c705e3d547b]
+link Main.MainFrame to javax.swing.JFrame-->
+        <path codeLine="9" d="M382,89.04 C382,104.42 382,125.12 382,143.53 " fill="none" id="Main.MainFrame-to-javax.swing.JFrame" style="stroke:#A80036;stroke-width:1.0;"/>
+        <polygon fill="none" points="389,143.63,382,163.63,375,143.63,389,143.63" style="stroke:#A80036;stroke-width:1.0;"/>
+        <!--MD5=[fe1d62fa0ecdbaa9fa5643d2d7690af5]
+@startuml
+class Main.DrawCanvas
+class Main.MainFrame
+class java.util.Collections
+class javax.swing.JFrame
+class javax.swing.JPanel
+interface Main.GraphicsShape
+Main.DrawCanvas ..> java.util.Collections
+Main.DrawCanvas - -|> javax.swing.JPanel
+Main.MainFrame - -|> javax.swing.JFrame
+@enduml
+
+PlantUML version 1.2021.3(Mon Mar 22 17:53:19 CET 2021)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: UTF-8
+Language: fr
+Country: FR
+-->
+    </g>
+</svg>
